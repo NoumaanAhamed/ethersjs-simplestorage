@@ -23,6 +23,7 @@ node_modules
 
 node_modules
 dist
+web
 
 SimpleStorage_sol_SimpleStorage.abi
 SimpleStorage_sol_SimpleStorage.bin
