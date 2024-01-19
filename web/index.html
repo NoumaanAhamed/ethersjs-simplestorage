@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    <script type="module" defer>
+          import { ethers } from "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.min.js";
+
+        async function main(){
+            let signer = null;
+
+let provider;
+if (window.ethereum == null) {
+
+    console.log("MetaMask not installed; using read-only defaults")
+    provider = ethers.getDefaultProvider()
+
+} else {
+
+    provider = new ethers.BrowserProvider(window.ethereum)
+
+    signer = await provider.getSigner();
+
+    let address = await signer.getAddress();
+
+    let blockNumber = await provider.getBlockNumber()
+// 19030518
+
+console.log(blockNumber);
+
+// Get the current balance of an account (by address or ENS name)
+let balance = await provider.getBalance(address)
+// 4085267032476673080n
+
+console.log(balance);
+
+// Since the balance is in wei, you may wish to display it
+// in ether instead.
+let ether = formatEther(balance)
+// '4.08526703247667308'
+
+console.log(ether);
+
+// Get the next nonce required to send a transaction
+let tx = await provider.getTransactionCount(address);
+
+console.log(tx);
+
+    
+}
+        }
+
+        main();
+
+
+    </script>
+</head>
+<body>
+    <h1>
+        Hello World
+    </h1>
+</body>
+</html>
